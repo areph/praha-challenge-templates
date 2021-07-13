@@ -1,4 +1,4 @@
-import { sumOfArray } from '../functions'
+import { sumOfArray, asyncSumOfArray } from '../functions'
 
 describe('sumOfArrayのテスト', () => {
   test('1つしか値がない場合はその値を返す', () => {
@@ -15,5 +15,11 @@ describe('sumOfArrayのテスト', () => {
   })
   test('浮動小数点があっても合計値を返す', () => {
     expect(sumOfArray([0.1, 0.2])).toBeCloseTo(0.3);
+  })
+})
+
+describe('asyncSumOfArrayのテスト', () => {
+  test('1つしか値がない場合はその値を返す', async () => {
+    await expect(asyncSumOfArray([100])).resolves.toBe(100);
   })
 })
