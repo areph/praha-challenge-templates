@@ -1,7 +1,9 @@
 import { mocked  } from 'ts-jest/utils';
-import { sumOfArray, asyncSumOfArray, asyncSumOfArraySometimesZero } from '../functions'
+import { sumOfArray, asyncSumOfArray, asyncSumOfArraySometimesZero, getFirstNameThrowIfLong } from '../functions'
 import { DatabaseMock } from "../util/index";
+import { NameApiService } from "../nameApiService";
 jest.mock('../util/index');
+// jest.mock('../nameApiService');
 
 describe('sumOfArrayのテスト', () => {
   test('1つしか値がない場合はその値を返す', () => {
@@ -58,5 +60,12 @@ describe('asyncSumOfArraySometimesZeroのテスト', () => {
     expect(DatabaseMock).not.toHaveBeenCalled();
     await expect(asyncSumOfArraySometimesZero([100])).resolves.toBe(0);
     expect(DatabaseMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('getFirstNameThrowIfLongのテスト', () => {
+  test('指定した引数の数字が文字列長より小さければその文字列を返す', async () => {
+    const spyNameApiService = jest.spyOn(NameApiService.prototype, 'getFirstName').mockReturnValue(Promise.resolve('mockmock'));
+    await expect(getFirstNameThrowIfLong(10)).resolves.toBe("mockmock");
   });
 });
