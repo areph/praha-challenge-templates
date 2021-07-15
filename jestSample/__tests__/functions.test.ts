@@ -21,9 +21,8 @@ describe('sumOfArrayのテスト', () => {
   test('浮動小数点があっても合計値を返す', () => {
     expect(sumOfArray([0.1, 0.2])).toBeCloseTo(0.3);
   })
-  test.skip('空の配列を渡した場合は例外を返す', () => {
-    // TODO: TypeErrorを検知するテストが書けない
-    expect(sumOfArray([])).toThrow();
+  test('空の配列を渡した場合は例外を返す', () => {
+    expect(() => sumOfArray([])).toThrow();
   })
 })
 
