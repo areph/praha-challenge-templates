@@ -68,4 +68,8 @@ describe('getFirstNameThrowIfLongのテスト', () => {
     const spyNameApiService = jest.spyOn(NameApiService.prototype, 'getFirstName').mockReturnValue(Promise.resolve('mockmock'));
     await expect(getFirstNameThrowIfLong(10)).resolves.toBe("mockmock");
   });
+  test('指定した引数の数字が文字列長より大きければ例外を返す', async () => {
+    const spyNameApiService = jest.spyOn(NameApiService.prototype, 'getFirstName').mockReturnValue(Promise.resolve('mockmock'));
+    await expect(getFirstNameThrowIfLong(1)).rejects.toThrow(new Error("first_name too long"));
+  });
 });
