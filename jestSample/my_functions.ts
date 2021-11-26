@@ -12,3 +12,12 @@ export const isZipCode = async (zipCode: string): Promise<boolean> => {
 
   return results != null && results.length != 0;
 };
+
+const fortune: { [key: number]: string } = {};
+fortune[0] = '大吉';
+fortune[1] = '吉';
+fortune[2] = '中吉';
+fortune[3] = '凶';
+export const printFortune = () => {
+  console.log(fortune[Math.floor(Math.random() * 4)]);
+};
